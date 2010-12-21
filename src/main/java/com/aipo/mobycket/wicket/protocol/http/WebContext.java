@@ -20,8 +20,12 @@
 package com.aipo.mobycket.wicket.protocol.http;
 
 import java.io.Serializable;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.mobylet.core.Mobylet;
 import org.mobylet.core.MobyletFactory;
@@ -41,6 +45,8 @@ public final class WebContext implements Serializable {
 
   public static final String DEFAULT_CHARACTER_SET = "UTF-8";
 
+  public static final String RESOURCE_BUNDLE = "application";
+
   private final Mobylet mobylet;
 
   private final Carrier carrier;
@@ -51,8 +57,15 @@ public final class WebContext implements Serializable {
 
   private final HttpServletRequest request;
 
-  protected WebContext(HttpServletRequest requset) {
+  private final HttpServletResponse response;
+
+  private final ServletContext servletContext;
+
+  protected WebContext(HttpServletRequest requset,
+      HttpServletResponse response, ServletContext servletContext) {
     this.request = requset;
+    this.response = response;
+    this.servletContext = servletContext;
     mobylet = getMobylet();
     if (mobylet != null) {
       // Feature Phone
@@ -306,7 +319,31 @@ public final class WebContext implements Serializable {
     }
   }
 
+  public String getProperty(String key) {
+    try {
+      ResourceBundle resourceBundle = ResourceBundle.getBundle(RESOURCE_BUNDLE);
+      return resourceBundle.getString(key);
+    } catch (MissingResourceException ignore) {
+      // ignore
+      return null;
+    }
+  }
+
   public HttpServletRequest getHttpServletRequest() {
     return request;
+  }
+
+  /**
+   * @return response
+   */
+  public HttpServletResponse getResponse() {
+    return response;
+  }
+
+  /**
+   * @return servletContext
+   */
+  public ServletContext getServletContext() {
+    return servletContext;
   }
 }
