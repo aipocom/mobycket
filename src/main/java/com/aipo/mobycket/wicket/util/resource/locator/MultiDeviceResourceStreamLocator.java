@@ -1,3 +1,9 @@
+/*
+ * Aipo is a groupware program developed by Aimluck,Inc.
+ * Copyright (C) 2004-2011 Aimluck,Inc.
+ * http://www.aipo.com
+ */
+
 package com.aipo.mobycket.wicket.util.resource.locator;
 
 import java.util.HashMap;

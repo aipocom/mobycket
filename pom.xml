@@ -7,7 +7,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <mobycket.version>1.0</mobycket.version>
-    <wicket.version>1.4.14</wicket.version>
+    <wicket.version>1.4.15</wicket.version>
     <mobylet.version>1.0.6</mobylet.version>
     <jetty.version>6.1.25</jetty.version>
     <slf4j.version>1.5.8</slf4j.version>
@@ -64,6 +64,11 @@
     <dependency>
       <groupId>org.apache.wicket</groupId>
       <artifactId>wicket-extensions</artifactId>
+      <version>${wicket.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.wicket</groupId>
+      <artifactId>wicket-auth-roles</artifactId>
       <version>${wicket.version}</version>
     </dependency>
     <dependency>
@@ -183,6 +188,43 @@
         <version>2.8</version>
         <configuration>
           <downloadSources>true</downloadSources>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.mycila.maven-license-plugin</groupId>
+        <artifactId>maven-license-plugin</artifactId>
+        <configuration>
+          <header>header.txt</header>
+          <mapping>
+            <xreg>XML_STYLE</xreg>
+            <psml>XML_STYLE</psml>
+          </mapping>
+          <includes>
+            <include>**/src/**/*.java</include>
+            <include>**/src/**/*.vm</include>
+            <include>**/src/**/*.html</include>
+            <include>**/src/**/*.xml</include>
+            <include>**/src/**/*.xreg</include>
+            <include>**/src/**/*.psml</include>
+            <include>**/src/**/*.js</include>
+            <include>**/src/**/*.css</include>
+            <include>**/src/**/*.css</include>
+            <include>**/src/**/*.jsp</include>
+            <include>**/src/**/*.xsl</include>
+            <include>**/src/**/*.properties</include>
+            <include>**/*.sql</include>
+          </includes>
+          <excludes>
+          </excludes>
+          <encoding>UTF-8</encoding>
+          <strictCheck>true</strictCheck>
+          <skipExistingHeaders>false</skipExistingHeaders>
+          <properties>
+            <year>2011</year>
+          </properties>
+          <headerDefinitions>
+            <headerDefinition>header-definition.xml</headerDefinition>
+          </headerDefinitions>
         </configuration>
       </plugin>
     </plugins>
