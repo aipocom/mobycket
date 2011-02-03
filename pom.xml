@@ -135,7 +135,6 @@
     </dependency>
   </dependencies>
   <build>
-  <finalName>mobycket</finalName>
     <resources>
       <resource>
         <filtering>false</filtering>
