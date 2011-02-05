@@ -22,7 +22,7 @@
 
   <name>aipo-mobycket</name>
   <description></description>
-  
+
   <repositories>
    <repository>
       <id>maven.seasar.org</id>
@@ -45,7 +45,7 @@
       <url>http://wiquery.googlecode.com/svn/repo/</url>
     </repository>
   </repositories>
-        
+
   <dependencies>
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -54,7 +54,7 @@
       <type>jar</type>
       <scope>provided</scope>
     </dependency>
-    
+
     <!-- WICKET DEPENDENCIES -->
     <dependency>
       <groupId>org.apache.wicket</groupId>
@@ -64,6 +64,11 @@
     <dependency>
       <groupId>org.apache.wicket</groupId>
       <artifactId>wicket-extensions</artifactId>
+      <version>${wicket.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.wicket</groupId>
+      <artifactId>wicket-datetime</artifactId>
       <version>${wicket.version}</version>
     </dependency>
     <dependency>
@@ -81,7 +86,7 @@
       <artifactId>wiquery</artifactId>
       <version>${wiquery.version}</version>
     </dependency -->
-    
+
     <!-- MOBYLET DEPENDENCIES -->
     <dependency>
       <groupId>org.seasar.mobylet</groupId>
@@ -93,7 +98,7 @@
       <artifactId>mobylet-core</artifactId>
       <version>${mobylet.version}</version>
     </dependency>
-    
+
     <!-- JUNIT DEPENDENCY FOR TESTING -->
     <dependency>
       <groupId>junit</groupId>
@@ -101,7 +106,7 @@
       <version>4.8.1</version>
       <scope>test</scope>
     </dependency>
-    
+
     <!-- LOGGING DEPENDENCIES - LOG4J -->
     <dependency>
       <groupId>org.slf4j</groupId>
@@ -113,7 +118,7 @@
       <artifactId>log4j</artifactId>
       <version>${log4j.version}</version>
     </dependency>
-    
+
     <!--  JETTY DEPENDENCIES FOR TESTING  -->
     <dependency>
       <groupId>org.mortbay.jetty</groupId>

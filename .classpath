@@ -17,6 +17,7 @@
   <classpathentry kind="var" path="M2_REPO/org/slf4j/slf4j-log4j12/1.5.8/slf4j-log4j12-1.5.8.jar" sourcepath="M2_REPO/org/slf4j/slf4j-log4j12/1.5.8/slf4j-log4j12-1.5.8-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/springframework/spring-core/2.5.2/spring-core-2.5.2.jar" sourcepath="M2_REPO/org/springframework/spring-core/2.5.2/spring-core-2.5.2-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/wicket/wicket/1.4.15/wicket-1.4.15.jar" sourcepath="M2_REPO/org/apache/wicket/wicket/1.4.15/wicket-1.4.15-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/wicket/wicket-datetime/1.4.15/wicket-datetime-1.4.15.jar" sourcepath="M2_REPO/org/apache/wicket/wicket-datetime/1.4.15/wicket-datetime-1.4.15-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/wicket/wicket-auth-roles/1.4.15/wicket-auth-roles-1.4.15.jar" sourcepath="M2_REPO/org/apache/wicket/wicket-auth-roles/1.4.15/wicket-auth-roles-1.4.15-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/wicket/wicket-extensions/1.4.15/wicket-extensions-1.4.15.jar" sourcepath="M2_REPO/org/apache/wicket/wicket-extensions/1.4.15/wicket-extensions-1.4.15-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/wicketstuff/wicketstuff-annotation/1.1/wicketstuff-annotation-1.1.jar" sourcepath="M2_REPO/org/wicketstuff/wicketstuff-annotation/1.1/wicketstuff-annotation-1.1-sources.jar"/>
