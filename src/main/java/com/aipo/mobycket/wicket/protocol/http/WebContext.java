@@ -52,6 +52,7 @@ public final class WebContext implements Serializable {
       HttpServletResponse response, ServletContext servletContext) {
     this.request = requset;
     this.response = response;
+    String userAgent = requset.getHeader("user-agent");
     this.servletContext = servletContext;
     mobylet = getMobylet();
     if (mobylet != null) {
@@ -86,8 +87,12 @@ public final class WebContext implements Serializable {
       } else {
         smartPhoneType = null;
       }
+      if (userAgent != null && userAgent.contains("iPad")) {
+        tabletType = TabletType.IPAD;
+      } else {
+        tabletType = null;
+      }
       // Tablet
-      tabletType = null;
 
       // Content-Type
       if (mobylet != null) {
