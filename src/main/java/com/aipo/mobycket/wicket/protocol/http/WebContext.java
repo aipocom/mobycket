@@ -72,7 +72,7 @@ public final class WebContext implements Serializable {
           break;
       }
       // Smart Phone
-      if (userAgent != null && userAgent.contains("Windows CE.")) {
+      if (userAgent != null && userAgent.contains("Windows CE")) {
         smartPhoneType = SmartPhoneType.WM;
       } else if (mobylet.getSmartPhoneType() != null) {
         switch (mobylet.getSmartPhoneType()) {
