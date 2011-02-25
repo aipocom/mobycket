@@ -72,7 +72,9 @@ public final class WebContext implements Serializable {
           break;
       }
       // Smart Phone
-      if (mobylet.getSmartPhoneType() != null) {
+      if (userAgent != null && userAgent.contains("Windows CE.")) {
+        smartPhoneType = SmartPhoneType.WM;
+      } else if (mobylet.getSmartPhoneType() != null) {
         switch (mobylet.getSmartPhoneType()) {
           case IPHONE:
             smartPhoneType = SmartPhoneType.IPHONE;
@@ -87,12 +89,13 @@ public final class WebContext implements Serializable {
       } else {
         smartPhoneType = null;
       }
+
+      // Tablet
       if (userAgent != null && userAgent.contains("iPad")) {
         tabletType = TabletType.IPAD;
       } else {
         tabletType = null;
       }
-      // Tablet
 
       // Content-Type
       if (mobylet != null) {
