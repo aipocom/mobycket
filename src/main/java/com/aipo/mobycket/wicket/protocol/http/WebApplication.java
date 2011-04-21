@@ -8,13 +8,11 @@ package com.aipo.mobycket.wicket.protocol.http;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.wicket.Request;
 import org.apache.wicket.RequestCycle;
-import org.apache.wicket.Response;
 import org.apache.wicket.authentication.AuthenticatedWebApplication;
-import org.apache.wicket.protocol.http.MobycketWebRequestCycle;
 import org.apache.wicket.protocol.http.RequestUtils;
 import org.apache.wicket.protocol.http.WebRequest;
 import org.apache.wicket.protocol.http.WebResponse;
@@ -59,21 +57,30 @@ public abstract class WebApplication extends AuthenticatedWebApplication {
     return new WebResponse(servletResponse) {
       @Override
       public void sendRedirect(String url) throws IOException {
-        String reqUrl =
+        HttpServletRequest httpServletRequest =
           ((WebRequest) RequestCycle.get().getRequest())
-            .getHttpServletRequest()
-            .getRequestURI();
+            .getHttpServletRequest();
+        String reqUrl = httpServletRequest.getRequestURI();
         String absUrl = RequestUtils.toAbsolutePath(reqUrl, url);
-        getHttpServletResponse().sendRedirect(absUrl);
+        getHttpServletResponse().sendRedirect(getRequestBaseUrl() + absUrl);
       }
     };
   }
 
-  @Override
-  public RequestCycle newRequestCycle(Request request, Response response) {
-    return new MobycketWebRequestCycle(
-      this,
-      (WebRequest) request,
-      (WebResponse) response);
+  protected String getRequestBaseUrl() {
+    HttpServletRequest request =
+      ((WebRequest) RequestCycle.get().getRequest()).getHttpServletRequest();
+    String scheme = request.getScheme();
+    int port = request.getServerPort();
+    String serverName = request.getServerName();
+    StringBuilder b = new StringBuilder(scheme);
+    b.append("://").append(serverName);
+    if (!("http".equals(scheme) && port == 80)
+      && !("https".equals(scheme) && port == 443)) {
+      b.append(":").append(port);
+    }
+
+    return b.toString();
+
   }
 }
