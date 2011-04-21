@@ -6,7 +6,18 @@
 
 package com.aipo.mobycket.wicket.protocol.http;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.wicket.Request;
+import org.apache.wicket.RequestCycle;
+import org.apache.wicket.Response;
 import org.apache.wicket.authentication.AuthenticatedWebApplication;
+import org.apache.wicket.protocol.http.MobycketWebRequestCycle;
+import org.apache.wicket.protocol.http.RequestUtils;
+import org.apache.wicket.protocol.http.WebRequest;
+import org.apache.wicket.protocol.http.WebResponse;
 import org.apache.wicket.settings.IResourceSettings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,4 +54,26 @@ public abstract class WebApplication extends AuthenticatedWebApplication {
 
   }
 
+  @Override
+  protected WebResponse newWebResponse(HttpServletResponse servletResponse) {
+    return new WebResponse(servletResponse) {
+      @Override
+      public void sendRedirect(String url) throws IOException {
+        String reqUrl =
+          ((WebRequest) RequestCycle.get().getRequest())
+            .getHttpServletRequest()
+            .getRequestURI();
+        String absUrl = RequestUtils.toAbsolutePath(reqUrl, url);
+        getHttpServletResponse().sendRedirect(absUrl);
+      }
+    };
+  }
+
+  @Override
+  public RequestCycle newRequestCycle(Request request, Response response) {
+    return new MobycketWebRequestCycle(
+      this,
+      (WebRequest) request,
+      (WebResponse) response);
+  }
 }
