@@ -57,6 +57,10 @@ public abstract class WebApplication extends AuthenticatedWebApplication {
     return new WebResponse(servletResponse) {
       @Override
       public void sendRedirect(String url) throws IOException {
+        if (url.startsWith("http")) {
+          getHttpServletResponse().sendRedirect(url);
+          return;
+        }
         HttpServletRequest httpServletRequest =
           ((WebRequest) RequestCycle.get().getRequest())
             .getHttpServletRequest();
