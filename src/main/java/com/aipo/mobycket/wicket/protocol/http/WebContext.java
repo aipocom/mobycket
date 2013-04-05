@@ -21,7 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
+ *
  */
 public final class WebContext implements Serializable {
 
@@ -267,6 +267,17 @@ public final class WebContext implements Serializable {
   public boolean isAndroid() {
     Mobylet mobylet = getMobylet();
     return (mobylet != null && SmartPhoneType.ANDROID.equals(smartPhoneType));
+  }
+
+  /**
+   * Android2系 端末かどうか判別します。
+   * 
+   * @return Android2系 端末かどうか
+   */
+  public boolean isAndroid2() {
+    Mobylet mobylet = getMobylet();
+    return (mobylet != null && SmartPhoneType.ANDROID.equals(smartPhoneType) && smartPhoneType
+      .ordinal() == 2);
   }
 
   /**
