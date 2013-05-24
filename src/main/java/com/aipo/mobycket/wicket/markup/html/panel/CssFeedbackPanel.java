@@ -96,8 +96,6 @@ public class CssFeedbackPanel extends Panel implements IFeedback {
   /** Message view */
   private final MessageListView messageListView;
 
-  private String cssClass;
-
   /**
    * @see org.apache.wicket.Component#Component(String)
    */
@@ -136,7 +134,6 @@ public class CssFeedbackPanel extends Panel implements IFeedback {
     if (filter != null) {
       setFilter(filter);
     }
-    this.cssClass = cssClass;
   }
 
   /**
@@ -331,8 +328,13 @@ public class CssFeedbackPanel extends Panel implements IFeedback {
     return label;
   }
 
-  public void addCss(String css) {
-    this.cssClass =
-      new StringBuilder(this.cssClass).append(cssClass).toString();
+  /**
+   *
+   */
+  public void appendCssClass(String css) {
+    this.messageListView.add(new AttributeAppender(
+      "",
+      new Model<String>(css),
+      " "));
   }
 }
