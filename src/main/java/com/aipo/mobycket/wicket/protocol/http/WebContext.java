@@ -281,6 +281,17 @@ public final class WebContext implements Serializable {
   }
 
   /**
+   * Android4系 端末かどうか判別します。
+   * 
+   * @return Android4系 端末かどうか
+   */
+  public boolean isAndroid4() {
+    Mobylet mobylet = getMobylet();
+    return (mobylet != null && SmartPhoneType.ANDROID.equals(smartPhoneType) && smartPhoneType
+      .ordinal() == 4);
+  }
+
+  /**
    * iPad 端末かどうか判別します。
    * 
    * @return iPad 端末かどうか
