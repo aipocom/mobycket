@@ -40,6 +40,8 @@ public final class WebContext implements Serializable {
 
   private final SmartPhoneType smartPhoneType;
 
+  private final int version;
+
   private final TabletType tabletType;
 
   private final HttpServletRequest request;
@@ -103,10 +105,16 @@ public final class WebContext implements Serializable {
           ? org.mobylet.core.type.ContentType.XHTML
           : org.mobylet.core.type.ContentType.HTML);
       }
+      if (userAgent != null) {
+        version = Version.getVersion(userAgent);
+      } else {
+        version = 0;
+      }
     } else {
       carrier = Carrier.OTHER;
       smartPhoneType = null;
       tabletType = null;
+      version = 0;
     }
 
   }
@@ -276,8 +284,7 @@ public final class WebContext implements Serializable {
    */
   public boolean isAndroid2() {
     Mobylet mobylet = getMobylet();
-    return (mobylet != null && SmartPhoneType.ANDROID.equals(smartPhoneType) && smartPhoneType
-      .ordinal() == 2);
+    return (mobylet != null && SmartPhoneType.ANDROID.equals(smartPhoneType) && version == 2);
   }
 
   /**
@@ -287,8 +294,7 @@ public final class WebContext implements Serializable {
    */
   public boolean isAndroid4() {
     Mobylet mobylet = getMobylet();
-    return (mobylet != null && SmartPhoneType.ANDROID.equals(smartPhoneType) && smartPhoneType
-      .ordinal() == 4);
+    return (mobylet != null && SmartPhoneType.ANDROID.equals(smartPhoneType) && version == 4);
   }
 
   /**
