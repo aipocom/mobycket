@@ -22,7 +22,7 @@ import org.mobylet.core.dialect.MobyletDialect;
 import com.aipo.mobycket.wicket.protocol.http.Carrier;
 
 /**
- * 
+ *
  */
 public class MobyletResponse extends org.mobylet.core.http.MobyletResponse {
 
@@ -56,11 +56,15 @@ public class MobyletResponse extends org.mobylet.core.http.MobyletResponse {
     if (dialect.getCarrier().equals(Carrier.DOCOMO)) {
       return super.encodeRedirectURL(url);
     } else {
-      String encodeURL = super.encodeRedirectURL(url);
-      if (encodeURL.indexOf(';') >= 0) {
-        return REG_JSESSIONID.matcher(encodeURL).replaceFirst("");
-      } else {
-        return encodeURL;
+      try {
+        String encodeURL = super.encodeRedirectURL(url);
+        if (encodeURL.indexOf(';') >= 0) {
+          return REG_JSESSIONID.matcher(encodeURL).replaceFirst("");
+        } else {
+          return encodeURL;
+        }
+      } catch (IllegalArgumentException ignore) {
+        return url.toString();
       }
     }
   }
