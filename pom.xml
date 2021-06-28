@@ -6,7 +6,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <mobycket.version>1.1</mobycket.version>
+    <mobycket.version>1.2</mobycket.version>
     <wicket.version>1.4.15</wicket.version>
     <mobylet.version>1.0.6</mobylet.version>
     <jetty.version>6.1.25</jetty.version>

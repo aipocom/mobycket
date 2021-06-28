@@ -15,12 +15,21 @@
  */
 package com.aipo.mobycket.mobylet.http;
 
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.mobylet.core.dialect.MobyletDialect;
 
 /**
- * 
+ *
  */
 public class MobyletFilter extends org.mobylet.core.http.MobyletFilter {
 
@@ -28,5 +37,47 @@ public class MobyletFilter extends org.mobylet.core.http.MobyletFilter {
   protected MobyletResponse wrapResponse(HttpServletResponse response,
       MobyletDialect dialect) {
     return new MobyletResponse(response, dialect);
+  }
+
+  @Override
+  public void doFilter(ServletRequest request, ServletResponse response,
+      FilterChain chain) throws IOException, ServletException {
+    String path = ((HttpServletRequest) request).getServletPath();
+
+    if (excludeFromFilter(path)) {
+      chain.doFilter(request, response);
+    } else {
+      super.doFilter(request, response, chain);
+    }
+
+  }
+
+  /**
+   * 静的ファイルはフィルター除外
+   *
+   * @param path
+   * @return
+   */
+  private boolean excludeFromFilter(String path) {
+
+    List<String> asList =
+      Arrays
+        .asList(
+          "htc",
+          "ico",
+          "js",
+          "png",
+          "gif",
+          "svg",
+          "jpg",
+          "css",
+          "eot",
+          "ttf",
+          "woff",
+          "woff2",
+          "oft");
+    String fileExtension = path.substring(path.lastIndexOf("."));
+
+    return !asList.contains(fileExtension);
   }
 }
