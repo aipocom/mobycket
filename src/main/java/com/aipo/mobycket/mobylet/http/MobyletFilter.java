@@ -59,25 +59,34 @@ public class MobyletFilter extends org.mobylet.core.http.MobyletFilter {
    * @return
    */
   private boolean excludeFromFilter(String path) {
+    try {
+      String fileExtension = "";
 
-    List<String> asList =
-      Arrays
-        .asList(
-          "htc",
-          "ico",
-          "js",
-          "png",
-          "gif",
-          "svg",
-          "jpg",
-          "css",
-          "eot",
-          "ttf",
-          "woff",
-          "woff2",
-          "oft");
-    String fileExtension = path.substring(path.lastIndexOf("."));
+      List<String> excludeFileExtension =
+        Arrays
+          .asList(
+            ".htc",
+            ".ico",
+            ".js",
+            ".png",
+            ".gif",
+            ".svg",
+            ".jpg",
+            ".css",
+            ".eot",
+            ".ttf",
+            ".woff",
+            ".woff2",
+            ".oft");
 
-    return !asList.contains(fileExtension);
+      if (path != null && path.contains(".")) {
+        fileExtension = path.substring(path.lastIndexOf("."));
+      }
+
+      return excludeFileExtension.contains(fileExtension);
+    } catch (Exception e) {
+      // ignore
+    }
+    return false;
   }
 }
