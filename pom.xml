@@ -27,11 +27,11 @@
    <repository>
       <id>maven.seasar.org</id>
       <name>The Seasar Foundation Maven2 Repository</name>
-      <url>http://maven.seasar.org/maven2</url>
+      <url>https://maven.seasar.org/maven2</url>
     </repository>
     <repository>
       <id>wicket-snaps</id>
-      <url>http://wicketstuff.org/maven/repository</url>
+      <url>https://wicketstuff.org/maven/repository</url>
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
