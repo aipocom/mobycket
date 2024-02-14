@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - cp ./settings.xml /root/.m2/settings.xml
+  pre_build:
+    commands:
+      - export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain aipo --domain-owner 917255366822 --query authorizationToken --output text`
+  build:
+    commands:
+      - echo Build started on `date`
+      - mvn install -Dmaven.wagon.http.ssl.insecure=true -Dmaven.wagon.http.ssl.allowall=true -Dmaven.wagon.http.ssl.ignore.validity.dates=true 
+      - mvn deploy 
+  post_build:
+    commands:
+      - echo Build completed on `date`
+artifacts:
+  files:
+    - target/*.jar
+  discard-paths: yes
+cache:
+  paths:
+    - '/root/.m2/**/*'
+    - '/root/.npm/**/*'
